@@ -13,9 +13,6 @@
 	export default {
 	  components: {
 	    'exhibition': content,
-	  },
-	  methods:{
-
 	  }
 	}
 </script>

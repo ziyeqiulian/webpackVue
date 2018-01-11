@@ -8,8 +8,6 @@ import store from './store/data'
 
 Vue.config.debug = true;
 
-// Vue.use(VueRouter)
-
 const app = new Vue({
 	router,
 	store,

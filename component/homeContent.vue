@@ -43,16 +43,15 @@
     .commodity {
         padding: 10px 50px;
     }
-    .commodity .img {
+    .commodity img {
         width: 100px;
         height: 100px;
-        border: 1px solid #ddd;
     }
     .commodity .box {
         display: flex;
     }
     .box section {
-        margin: 10px;
+        margin: 0 0 10px 10px;
         padding: 0 10px;
     }
     .box .details {
@@ -80,18 +79,19 @@
         </div>
         <div class="commodity">
             <div class="box" v-for="item in lists">
-                <!-- <img src="./static/img/girl.jpg"> -->
-                <div class="img"></div>
+                <div class="img">
+                    <img :src="item.imgSrc">
+                </div>
                 <section>
-                    <header>美女图片</header>
+                    <header>{{item.head}}</header>
                     <div class="details">
                         <div>
-                            <div>淘宝价 88</div>
-                            <div>优惠价 68</div>
+                            <div>淘宝价 {{item.taobao}}</div>
+                            <div>优惠价 {{item.onsale}}</div>
                         </div>
                         <div>
-                            <div>10000人购买</div>
-                            <div>立省20</div>
+                            <div>{{item.people}}人购买</div>
+                            <div>立省{{item.discount}}</div>
                         </div>
                     </div>
                 </section>
@@ -103,49 +103,29 @@
 <script>
     export default {
         data () {
-            return {
-                tip: '羽绒服',
-                inputword: '',
-                menus: [
-                    {
-                        id:'man',
-                        text:'男装',
-                        chosed:true
-                    },
-                    {
-                        id:'woman',
-                        text:'女装',
-                        chosed:false
-                    },
-                    {
-                        id:'foods',
-                        text:'美食',
-                        chosed:false
-                    },
-                    {
-                        id:'shoes',
-                        text:'鞋子',
-                        chosed:false
-                    },
-                    {
-                        id:'electron',
-                        text:'电子产品',
-                        chosed:false
-                    },
-                ],
-                // lists:[]
-            }
+            return {}
         },
         computed:{
+            //搜索框默认提示内容
+            tip (){
+                return this.$store.state.home.tip
+            },
+            //搜索框输入内容
+            inputword (){
+                return this.$store.state.home.inputword
+            },
+            //商品种类列表
+            menus (){
+                return this.$store.state.home.menus
+            },
+            //商品列表
             lists (){
                 return this.$store.state.home.lists
-                // `state => state.count`
             }
         },
         methods : {
             search (str){
                 
-                console.log(str)
             },
             genre (id,$index){
                 //todo:请求
